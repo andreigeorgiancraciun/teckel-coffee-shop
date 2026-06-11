@@ -8,7 +8,6 @@ type Blob = {
   opacity: number
 }
 
-// Paleta calda + galben si verde
 const C = {
   amber:      '#FF9900',
   orange:     '#FF6600',

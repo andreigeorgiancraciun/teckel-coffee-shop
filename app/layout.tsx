@@ -2,6 +2,7 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata } from 'next'
 import { Fraunces, DM_Sans, Geist_Mono } from 'next/font/google'
 import './globals.css'
+import React from "react";
 
 const fraunces = Fraunces({
   variable: '--font-fraunces',
@@ -20,7 +21,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Teckel Coffee & Cocktails — with Zucchini',
   description:
-    'A Brooklyn-style specialty coffee & cocktails spot run (mostly) by Zucchini, our harlequin dachshund. Espresso, filter, cold brew & good vibes. Cafea de specialitate și cocktailuri cu Zucchini.',
+    'A Zucchi-style specialty coffee & cocktails spot run (mostly) by Zucchini, our harlequin dachshund. Espresso, filter, cold brew & good vibes.',
   generator: 'v0.app',
 }
 

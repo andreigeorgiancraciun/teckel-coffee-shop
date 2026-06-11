@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { Button } from '@/components/ui/button'
 import { useLang } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
 import { socials } from '@/components/social-icons'
@@ -24,7 +23,7 @@ export function Navbar() {
     { href: '#menu', label: tr('navMenu') },
     { href: '#shop', label: tr('navShop') },
     { href: '#gallery', label: tr('navGallery') },
-    { href: '#contact', label: tr('navVisit') },
+    { href: '#visit', label: tr('navVisit') },
     { href: '#about', label: tr('navAbout') },
   ]
 
@@ -38,7 +37,7 @@ export function Navbar() {
       )}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5">
-        <a href="#top" className="inline-grid w-[112px] gap-0.5 leading-none text-foreground">
+        <a href="#top" className="inline-grid w-28 gap-0.5 leading-none text-foreground">
           <Image
             src="/images/dog-logo.png"
             alt="Teckel Coffee & Cocktails logo — a harlequin dachshund"

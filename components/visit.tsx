@@ -29,7 +29,7 @@ export function Visit() {
             <iframe
               title="Teckel & Co. location map"
               src="https://www.openstreetmap.org/export/embed.html?bbox=26.0900%2C44.4300%2C26.1100%2C44.4400&layer=mapnik&marker=44.4350%2C26.1000"
-              className="h-[320px] w-full lg:h-full"
+              className="h-80 w-full lg:h-full"
               loading="lazy"
             />
           </motion.div>

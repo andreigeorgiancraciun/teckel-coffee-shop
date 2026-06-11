@@ -22,7 +22,7 @@ function buildTrail(endY: number): Paw[] {
 
   // seed pseudo-random ca sa nu se schimbe la fiecare resize
   let seed = 42
-  const rand = () => { seed = (seed * 16807 + 0) % 2147483647; return (seed - 1) / 2147483646 }
+  const rand = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646 }
 
   for (let i = 0; startY + i * step < endY; i++) {
     const y = startY + i * step

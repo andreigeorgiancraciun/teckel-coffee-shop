@@ -4,6 +4,12 @@
 
 @custom-variant dark (&:is(.dark *));
 
+:root {
+  --font-fraunces: '';
+  --font-dm-sans: '';
+  --font-geist-mono: '';
+}
+
 @theme inline {
   --font-heading: var(--font-fraunces), 'Georgia', serif;
   --font-sans: var(--font-dm-sans), 'DM Sans Fallback', ui-sans-serif, system-ui;
