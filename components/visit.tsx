@@ -28,7 +28,7 @@ export function Visit() {
           >
             <iframe
               title="Teckel & Co. location map"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=26.0900%2C44.4300%2C26.1100%2C44.4400&layer=mapnik&marker=44.4350%2C26.1000"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=26.1127%2C44.4326%2C26.1167%2C44.4346&layer=mapnik&marker=44.4336%2C26.1147"
               className="h-80 w-full lg:h-full"
               loading="lazy"
             />
@@ -51,14 +51,14 @@ export function Visit() {
                 </h3>
               </div>
               <a
-                href="https://www.google.com/maps/search/?api=1&query=Strada+Cafelei+12,+București,+România"
+                href="https://www.google.com/maps/place/Teckel+Coffee+%26+Cocktails/@44.4337077,26.1148325,18.78z/data=!4m15!1m8!3m7!1s0x40b1ff3adf093187:0xcd56d168b85d7c71!2sStrada+Romulus+23,+030167+Bucure%C8%99ti!3b1!8m2!3d44.4337414!4d26.1150804!16s%2Fg%2F11vkgmzt23!3m5!1s0x40b1ff0bfcd3f4b7:0xc7e728f864854b53!8m2!3d44.4336047!4d26.1146419!16s%2Fg%2F11nqwtpzbz?entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 block leading-relaxed text-muted-foreground transition-colors hover:text-primary"
               >
-                Strada Cafelei 12
+                Teckel Coffee & Cocktails
                 <br />
-                Cartierul Vechi, București 030167
+                Strada Romulus 23, 030167 București
                 <br />
                 România
               </a>
@@ -68,10 +68,10 @@ export function Visit() {
                   <Phone className="h-5 w-5" />
                 </span>
                 <a
-                  href="tel:+40712345678"
+                  href="tel:+40763823438"
                   className="font-medium text-foreground transition-colors hover:text-primary"
                 >
-                  +40 712 345 678
+                  +40 763 823 438
                 </a>
               </div>
             </div>
@@ -87,16 +87,20 @@ export function Visit() {
               </div>
               <ul className="mt-4 space-y-2 text-muted-foreground">
                 <li className="flex justify-between">
-                  <span>{tr('weekdays')}</span>
-                  <span className="font-medium text-foreground">07:00 – 20:00</span>
+                  <span>Luni – Miercuri</span>
+                  <span className="font-medium text-foreground">08:00 – 17:00</span>
                 </li>
                 <li className="flex justify-between">
-                  <span>{tr('saturday')}</span>
-                  <span className="font-medium text-foreground">08:00 – 21:00</span>
+                  <span>Joi – Vineri</span>
+                  <span className="font-medium text-foreground">08:00 – 22:00</span>
                 </li>
                 <li className="flex justify-between">
-                  <span>{tr('sunday')}</span>
-                  <span className="font-medium text-foreground">08:00 – 18:00</span>
+                  <span>Sâmbătă</span>
+                  <span className="font-medium text-foreground">09:00 – 22:00</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Duminică</span>
+                  <span className="font-medium text-foreground">09:00 – 22:00</span>
                 </li>
               </ul>
             </div>

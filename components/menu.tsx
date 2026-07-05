@@ -1,9 +1,10 @@
 'use client'
 
+import Link from 'next/link'
 import { motion } from 'motion/react'
 import { useLang, type Lang } from '@/lib/i18n'
 
-type Item = { name: { ro: string; en: string }; desc: { ro: string; en: string }; price: string }
+type Item = { name: { ro: string; en: string }; desc?: { ro: string; en: string }; price: string }
 type Category = {
   id: string
   title: { ro: string; en: string }
@@ -21,45 +22,81 @@ const categories: Category[] = [
     chip: 'bg-terracotta/15 text-terracotta',
     cardBg: 'bg-terracotta/10',
     items: [
-      { name: { ro: 'Espresso', en: 'Espresso' }, desc: { ro: 'Dublu, dens, serios.', en: 'Double shot, dense, serious.' }, price: '10' },
-      { name: { ro: 'Flat White', en: 'Flat White' }, desc: { ro: 'Microspumă mătăsoasă.', en: 'Silky microfoam.' }, price: '16' },
-      { name: { ro: 'Cortado', en: 'Cortado' }, desc: { ro: 'Echilibru perfect 1:1.', en: 'Perfect 1:1 balance.' }, price: '14' },
+      { name: { ro: 'Espresso Single', en: 'Espresso Single' }, price: '9' },
+      { name: { ro: 'Espresso Double', en: 'Espresso Double' }, price: '12' },
+      { name: { ro: 'Americano / Long Black', en: 'Americano / Long Black' }, price: '13' },
+      { name: { ro: 'Cortado', en: 'Cortado' }, price: '13' },
+      { name: { ro: 'Cappuccino', en: 'Cappuccino' }, price: '15' },
+      { name: { ro: 'Flat White', en: 'Flat White' }, price: '18' },
     ],
   },
   {
-    id: 'filter',
-    title: { ro: 'Filtru', en: 'Filter' },
-    accent: 'bg-forest',
-    chip: 'bg-forest/15 text-forest',
-    cardBg: 'bg-forest/10',
+    id: 'specialty',
+    title: { ro: 'Cold & Specialty', en: 'Cold & Specialty' },
+    accent: 'bg-terracotta',
+    chip: 'bg-terracotta/15 text-terracotta',
+    cardBg: 'bg-terracotta/10',
     items: [
-      { name: { ro: 'V60', en: 'V60' }, desc: { ro: 'Single origin, clar și floral.', en: 'Single origin, clean & floral.' }, price: '18' },
-      { name: { ro: 'Chemex', en: 'Chemex' }, desc: { ro: 'Pentru doi, sau doar pentru tine.', en: 'For two, or just you.' }, price: '24' },
-      { name: { ro: 'Batch Brew', en: 'Batch Brew' }, desc: { ro: 'Cafeaua zilei, mereu proaspătă.', en: "Today's brew, always fresh." }, price: '12' },
+      { name: { ro: 'Cold Brew', en: 'Cold Brew' }, price: '18' },
+      { name: { ro: 'Latte', en: 'Latte' }, desc: { ro: 'Cald / Rece', en: 'Hot / Iced' }, price: '20' },
+      { name: { ro: 'Matcha Latte', en: 'Matcha Latte' }, desc: { ro: 'Cald / Rece', en: 'Hot / Iced' }, price: '23' },
+      { name: { ro: 'Cold Brew Tonic', en: 'Cold Brew Tonic' }, price: '26' },
+      { name: { ro: 'Babyccino', en: 'Babyccino' }, desc: { ro: 'pentru copii', en: 'for kids' }, price: '7' },
+      { name: { ro: 'Extra Shot', en: 'Extra Shot' }, price: '+4' },
+      { name: { ro: 'Lapte ovăz', en: 'Oat milk' }, price: '+3' },
     ],
   },
   {
-    id: 'coldbrew',
-    title: { ro: 'Cold Brew', en: 'Cold Brew' },
+    id: 'spritz',
+    title: { ro: 'Spritz & Fresh', en: 'Spritz & Fresh' },
     accent: 'bg-mustard',
     chip: 'bg-mustard/25 text-foreground',
     cardBg: 'bg-mustard/15',
     items: [
-      { name: { ro: 'Cold Brew Clasic', en: 'Classic Cold Brew' }, desc: { ro: 'Infuzat 18 ore.', en: '18-hour steep.' }, price: '17' },
-      { name: { ro: 'Tonic de Cafea', en: 'Coffee Tonic' }, desc: { ro: 'Espresso, tonic, lămâie.', en: 'Espresso, tonic, lemon.' }, price: '19' },
-      { name: { ro: 'Nitro', en: 'Nitro' }, desc: { ro: 'Cremos ca berea, fără alcool.', en: 'Creamy like stout, zero booze.' }, price: '21' },
+      { name: { ro: 'Aperol Spritz', en: 'Aperol Spritz' }, price: '30' },
+      { name: { ro: 'Hugo', en: 'Hugo' }, price: '30' },
+      { name: { ro: 'Paloma', en: 'Paloma' }, price: '40' },
     ],
   },
   {
-    id: 'food',
-    title: { ro: 'Mâncare', en: 'Food' },
+    id: 'gintonic',
+    title: { ro: 'Gin & Tonic', en: 'Gin & Tonic' },
+    accent: 'bg-forest',
+    chip: 'bg-forest/15 text-forest',
+    cardBg: 'bg-forest/10',
+    items: [
+      { name: { ro: 'Gin Tonic Originale', en: 'Gin Tonic Originale' }, price: '38' },
+      { name: { ro: 'Gin Tonic Arancia', en: 'Gin Tonic Arancia' }, price: '38' },
+      { name: { ro: 'Gin Tonic Limone', en: 'Gin Tonic Limone' }, price: '38' },
+      { name: { ro: 'Gin Tonic Rosa', en: 'Gin Tonic Rosa' }, price: '38' },
+    ],
+  },
+  {
+    id: 'classics',
+    title: { ro: 'Classics', en: 'Classics' },
     accent: 'bg-warm-red',
     chip: 'bg-warm-red/15 text-warm-red',
     cardBg: 'bg-warm-red/10',
     items: [
-      { name: { ro: 'Croissant cu unt', en: 'Butter Croissant' }, desc: { ro: 'Copt în casă, fulgi peste tot.', en: 'House-baked, flakes everywhere.' }, price: '12' },
-      { name: { ro: 'Banana Bread', en: 'Banana Bread' }, desc: { ro: 'Rețeta bunicii, aprobat de Max.', en: "Grandma's recipe, Max-approved." }, price: '14' },
-      { name: { ro: 'Avocado Toast', en: 'Avocado Toast' }, desc: { ro: 'Pâine cu maia, ou, chili.', en: 'Sourdough, egg, chili.' }, price: '26' },
+      { name: { ro: 'Negroni', en: 'Negroni' }, price: '35' },
+      { name: { ro: 'Margarita', en: 'Margarita' }, price: '35' },
+      { name: { ro: 'Whiskey Sour', en: 'Whiskey Sour' }, price: '35' },
+      { name: { ro: 'Amaretto Sour', en: 'Amaretto Sour' }, price: '35' },
+      { name: { ro: 'Espresso Martini', en: 'Espresso Martini' }, price: '40' },
+      { name: { ro: 'Pornstar Martini', en: 'Pornstar Martini' }, price: '40' },
+    ],
+  },
+  {
+    id: 'spirits',
+    title: { ro: 'Spirits & Shots', en: 'Spirits & Shots' },
+    accent: 'bg-terracotta',
+    chip: 'bg-terracotta/15 text-terracotta',
+    cardBg: 'bg-terracotta/10',
+    items: [
+      { name: { ro: 'Vodka Beluga', en: 'Vodka Beluga' }, desc: { ro: '50 ml', en: '50 ml' }, price: '25' },
+      { name: { ro: 'Whiskey Glenfiddich', en: 'Whiskey Glenfiddich' }, desc: { ro: '50 ml', en: '50 ml' }, price: '25' },
+      { name: { ro: 'Jägermeister', en: 'Jägermeister' }, price: '18' },
+      { name: { ro: 'Tequila Añejo', en: 'Tequila Añejo' }, price: '23' },
     ],
   },
 ]
@@ -84,14 +121,12 @@ function CategoryCard({ cat, lang, index }: { cat: Category; lang: Lang; index: 
       </div>
       <ul className="flex flex-1 flex-col gap-4 p-6">
         {cat.items.map((item) => (
-          <li key={item.name.en} className="flex items-start justify-between gap-4">
+          <li key={`${item.name.en}-${item.price}`} className="flex items-start justify-between gap-4">
             <div>
               <p className="font-semibold text-foreground">{item.name[lang]}</p>
-              <p className="text-sm text-muted-foreground">{item.desc[lang]}</p>
+              {item.desc && <p className="text-sm text-muted-foreground">{item.desc[lang]}</p>}
             </div>
-            <span
-              className={`shrink-0 rounded-full px-3 py-1 text-sm font-bold ${cat.chip}`}
-            >
+            <span className={`shrink-0 rounded-full px-3 py-1 text-sm font-bold ${cat.chip}`}>
               {item.price} lei
             </span>
           </li>
@@ -120,6 +155,23 @@ export function Menu() {
           {categories.map((cat, i) => (
             <CategoryCard key={cat.id} cat={cat} lang={lang} index={i} />
           ))}
+          <motion.div
+            {...reveal(categories.length)}
+            className="flex flex-col items-center justify-center gap-4 overflow-hidden rounded-[2rem] border border-border bg-secondary/50 backdrop-blur-md p-8 text-center sm:col-span-2"
+          >
+            <p className="font-heading text-xl font-bold text-foreground">
+              {lang === 'ro' ? 'Vinuri, bere, ceai, limonadă și altele' : 'Wines, beer, tea, lemonade & more'}
+            </p>
+            <p className="text-muted-foreground">
+              {lang === 'ro' ? 'Vezi meniul complet' : 'See the full menu'}
+            </p>
+            <Link
+              href="/menu"
+              className="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+            >
+              {lang === 'ro' ? 'Meniu complet →' : 'Full menu →'}
+            </Link>
+          </motion.div>
         </div>
       </div>
     </section>
