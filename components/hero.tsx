@@ -61,6 +61,7 @@ export function Hero() {
               width={600}
               height={500}
               className="w-full invisible"
+              sizes="(max-width: 768px) 100vw, 448px"
             />
             {/* zona de clip — foto se misca DOAR in interiorul ei */}
             <div className="absolute inset-4 overflow-hidden rounded-[2rem]">
@@ -75,6 +76,7 @@ export function Hero() {
                   alt="Zucchini în cafeneaua Teckel Coffee & Cocktails"
                   fill
                   priority
+                  sizes="(max-width: 768px) 100vw, 448px"
                   className="object-cover object-top"
                 />
               </motion.div>

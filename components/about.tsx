@@ -32,6 +32,8 @@ export function About() {
                 src="/images/zucchini-about.png"
                 alt="Zucchini the harlequin dachshund wearing a little barista apron"
                 fill
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-contain"
               />
             </div>
