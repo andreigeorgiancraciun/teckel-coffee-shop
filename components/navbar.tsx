@@ -43,6 +43,7 @@ export function Navbar() {
             alt="Teckel Coffee & Cocktails logo — a harlequin dachshund"
             width={258}
             height={138}
+            priority
             className="w-full h-auto drop-shadow-sm"
           />
           <div className="flex items-center gap-1.5">
