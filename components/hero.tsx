@@ -35,11 +35,11 @@ export function Hero() {
         </div>
 
         <div
-          className="relative mx-auto"
+          className="relative w-full"
           style={{ animation: 'hero-image-in 0.7s 0.15s cubic-bezier(0,0,0.58,1) both' }}
         >
           {/* rama groasa — bg-mustard + padding intern = efect de rama foto */}
-          <div className="relative w-full max-w-md rounded-[2.5rem] bg-mustard p-4 shadow-2xl">
+          <div className="relative mx-auto w-full max-w-md rounded-[2.5rem] bg-mustard p-4 shadow-2xl">
             {/* rezerva inaltimea cadrului fara request de retea — aspect ratio 6:5 */}
             <div aria-hidden className="w-full" style={{ aspectRatio: '6/5' }} />
             {/* zona de clip — foto se misca DOAR in interiorul ei */}
