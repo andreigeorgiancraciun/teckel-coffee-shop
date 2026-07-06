@@ -14,7 +14,7 @@ type Paw = {
 function buildTrail(endY: number): Paw[] {
   const paws: Paw[] = []
   const startY = 660
-  const step = 26
+  const step = 42
   const centerX = 50
   const amplitude = 37
   const wavelength = 1300
@@ -61,9 +61,22 @@ export function PawTrail() {
       const h = document.documentElement.scrollHeight
       setTrail(buildTrail(h + 400))
     }
-    update()
+
+    // defer past LCP/CLS measurement window — don't mutate DOM during initial paint
+    const ric = (window as any).requestIdleCallback
+    const cic = (window as any).cancelIdleCallback
+    let id: any
+    if (ric) {
+      id = ric(update, { timeout: 3000 })
+    } else {
+      id = setTimeout(update, 800)
+    }
+
     window.addEventListener('resize', update)
-    return () => window.removeEventListener('resize', update)
+    return () => {
+      if (ric && cic) cic(id); else clearTimeout(id)
+      window.removeEventListener('resize', update)
+    }
   }, [])
 
   return (

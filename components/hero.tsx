@@ -11,7 +11,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-screen items-center overflow-hidden pt-24"
+      className="relative flex min-h-svh items-center overflow-hidden pt-24"
     >
 
 
