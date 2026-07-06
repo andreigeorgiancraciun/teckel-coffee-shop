@@ -44,6 +44,7 @@ export function Navbar() {
             width={258}
             height={138}
             priority
+            fetchPriority="high"
             className="w-full h-auto drop-shadow-sm"
           />
           <div className="flex items-center gap-1.5">
