@@ -9,14 +9,17 @@ const fraunces = Fraunces({
   variable: '--font-fraunces',
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '900'],
+  display: 'optional',
 })
 const dmSans = DM_Sans({
   variable: '--font-dm-sans',
   subsets: ['latin'],
+  display: 'optional',
 })
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+  display: 'optional',
 })
 
 export const metadata: Metadata = {
