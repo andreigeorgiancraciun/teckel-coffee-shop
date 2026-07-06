@@ -39,6 +39,17 @@ export default function RootLayout({
       lang="en"
       className={`${fraunces.variable} ${dmSans.variable} ${geistMono.variable} bg-background`}
     >
+      <head>
+        {/* Next.js 16 omits fetchpriority on fill+priority image preloads — add it manually */}
+        <link
+          rel="preload"
+          as="image"
+          // @ts-ignore — imageSrcSet/imageSizes not in React types
+          imageSrcSet="/_next/image?url=%2Fimages%2FHERO.png&w=640&q=75 640w, /_next/image?url=%2Fimages%2FHERO.png&w=828&q=75 828w, /_next/image?url=%2Fimages%2FHERO.png&w=1080&q=75 1080w"
+          imageSizes="(max-width: 768px) 100vw, 448px"
+          fetchPriority="high"
+        />
+      </head>
       <body className="font-sans antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}

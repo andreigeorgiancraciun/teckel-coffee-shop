@@ -76,6 +76,7 @@ export function Hero() {
                   alt="Zucchini în cafeneaua Teckel Coffee & Cocktails"
                   fill
                   priority
+                  fetchPriority="high"
                   sizes="(max-width: 768px) 100vw, 448px"
                   className="object-cover object-top"
                 />
