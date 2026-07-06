@@ -63,7 +63,7 @@ export function Navbar() {
             <a
               key={l.href}
               href={l.href}
-              className="text-base font-medium text-foreground/80 transition-colors hover:text-primary"
+              className="text-base font-medium text-foreground transition-colors hover:text-primary"
             >
               {l.label}
             </a>
@@ -94,7 +94,7 @@ export function Navbar() {
             <span
               className={cn(
                 'rounded-full px-3 py-1.5 transition-colors',
-                lang === 'ro' ? 'bg-primary text-primary-foreground' : 'text-foreground/60',
+                lang === 'ro' ? 'bg-primary text-primary-foreground' : 'text-foreground',
               )}
             >
               RO
@@ -102,7 +102,7 @@ export function Navbar() {
             <span
               className={cn(
                 'rounded-full px-3 py-1.5 transition-colors',
-                lang === 'en' ? 'bg-primary text-primary-foreground' : 'text-foreground/60',
+                lang === 'en' ? 'bg-primary text-primary-foreground' : 'text-foreground',
               )}
             >
               EN
@@ -127,7 +127,7 @@ export function Navbar() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="rounded-xl px-3 py-2 text-base font-medium text-foreground/80 hover:bg-secondary"
+                className="rounded-xl px-3 py-2 text-base font-medium text-foreground hover:bg-secondary"
               >
                 {l.label}
               </a>
