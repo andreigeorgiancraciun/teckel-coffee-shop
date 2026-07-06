@@ -61,7 +61,7 @@ export function Hero() {
               width={600}
               height={500}
               className="w-full invisible"
-              sizes="(max-width: 768px) 100vw, 448px"
+              unoptimized
             />
             {/* zona de clip — foto se misca DOAR in interiorul ei */}
             <div className="absolute inset-4 overflow-hidden rounded-[2rem]">
