@@ -33,8 +33,8 @@ const rowPatterns = [
   [{ x:  8, c: C.green   }, { x: 23, c: C.amber   }, { x: 76, c: C.lemon   }, { x: 91, c: C.sage    }],
 ]
 
-const ROW_H  = 260
-const PAGE_H = 9500  // acoperire mobil — sectiunile stivuite vertical sunt mult mai lungi
+const ROW_H  = 520
+const PAGE_H = 9500
 
 const BLOBS: Blob[] = []
 let row = 0
@@ -43,15 +43,15 @@ for (let y = -100; y < PAGE_H; y += ROW_H) {
   for (let col = 0; col < pattern.length; col++) {
     const p = pattern[col]
     const wobbleX = ((row + col) % 5 - 2) * 3
-    const w = 440 + (row % 3) * 30
-    const h = 400 + (col % 3) * 30
-    const opacity = 0.07 + ((row + col) % 4) * 0.02  // 0.07–0.13
+    const w = 500 + (row % 3) * 30
+    const h = 460 + (col % 3) * 30
+    const opacity = 0.07 + ((row + col) % 4) * 0.02
     BLOBS.push({
       top: y,
       xPercent: p.x + wobbleX,
       w, h,
       color: p.c,
-      blur: 90,
+      blur: 70,
       opacity,
     })
   }
@@ -63,7 +63,7 @@ export function BgBlobs() {
     <div
       aria-hidden
       className="pointer-events-none absolute inset-0 overflow-hidden"
-      style={{ zIndex: 0 }}
+      style={{ zIndex: 0, willChange: 'transform' }}
     >
       {BLOBS.map((b, i) => (
         <div
