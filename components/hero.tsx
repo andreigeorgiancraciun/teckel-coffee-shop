@@ -40,16 +40,8 @@ export function Hero() {
         >
           {/* rama groasa — bg-mustard + padding intern = efect de rama foto */}
           <div className="relative w-full max-w-md rounded-[2.5rem] bg-mustard p-4 shadow-2xl">
-            {/* imaginea invizibila seteaza inaltimea containerului */}
-            <Image
-              src="/images/HERO.png"
-              alt=""
-              aria-hidden
-              width={600}
-              height={500}
-              className="w-full invisible"
-              unoptimized
-            />
+            {/* rezerva inaltimea cadrului fara request de retea — aspect ratio 6:5 */}
+            <div aria-hidden className="w-full" style={{ aspectRatio: '6/5' }} />
             {/* zona de clip — foto se misca DOAR in interiorul ei */}
             <div className="absolute inset-4 overflow-hidden rounded-[2rem]">
               <div
