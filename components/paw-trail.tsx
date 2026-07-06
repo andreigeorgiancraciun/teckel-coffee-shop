@@ -62,21 +62,9 @@ export function PawTrail() {
       setTrail(buildTrail(h + 400))
     }
 
-    // defer past LCP/CLS measurement window — don't mutate DOM during initial paint
-    const ric = (window as any).requestIdleCallback
-    const cic = (window as any).cancelIdleCallback
-    let id: any
-    if (ric) {
-      id = ric(update, { timeout: 3000 })
-    } else {
-      id = setTimeout(update, 800)
-    }
-
+    update()
     window.addEventListener('resize', update)
-    return () => {
-      if (ric && cic) cic(id); else clearTimeout(id)
-      window.removeEventListener('resize', update)
-    }
+    return () => window.removeEventListener('resize', update)
   }, [])
 
   return (

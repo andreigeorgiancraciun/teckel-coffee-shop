@@ -21,13 +21,13 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          <h1 className="mt-6 font-heading text-5xl font-black leading-[0.95] tracking-tight text-foreground sm:text-6xl lg:text-7xl text-balance">
+          <h1 className="mt-6 font-heading text-5xl font-black leading-[0.95] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
             {tr('heroTitle1')}
             <br />
             <span className="text-primary">{tr('heroTitle2')}</span>
           </h1>
 
-          <p className="mt-6 max-w-md text-lg leading-relaxed text-muted-foreground text-pretty">
+          <p className="mt-6 max-w-md text-lg leading-relaxed text-muted-foreground">
             {tr('heroSub')}
           </p>
 
