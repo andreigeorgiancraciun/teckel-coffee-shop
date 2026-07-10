@@ -82,6 +82,16 @@ const products: Product[] = [
   },
 ]
 
+const WHATSAPP_NUMBER = '40763823438'
+
+function buildWhatsappLink(product: Product, lang: 'ro' | 'en') {
+  const message =
+    lang === 'ro'
+      ? `Bună! Aș vrea să comand ${product.nameRo} (${product.weight}).`
+      : `Hi! I'd like to order ${product.nameEn} (${product.weight}).`
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
+}
+
 export function Shop() {
   const { tr, lang } = useLang()
 
@@ -148,9 +158,11 @@ export function Shop() {
               <span className="font-heading text-2xl font-black text-foreground">
                 {p.price}
               </span>
-              <Button size="sm" className="rounded-full gap-1.5">
-                <ShoppingBag className="h-3.5 w-3.5" />
-                {tr('shopOrder')}
+              <Button size="sm" className="rounded-full gap-1.5" asChild>
+                <a href={buildWhatsappLink(p, lang)} target="_blank" rel="noopener noreferrer">
+                  <ShoppingBag className="h-3.5 w-3.5" />
+                  {tr('shopOrder')}
+                </a>
               </Button>
             </div>
           </motion.div>
