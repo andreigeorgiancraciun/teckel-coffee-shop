@@ -5,12 +5,12 @@ import { motion } from 'motion/react'
 import { useLang } from '@/lib/i18n'
 
 const images = [
-  { src: '/images/gallery-1.png', alt: 'Latte with latte art', span: 'row-span-2' },
-  { src: '/images/gallery-2.png', alt: 'Dachshund resting on a café bench', span: '' },
-  { src: '/images/gallery-3.png', alt: 'Barista pulling an espresso shot', span: '' },
-  { src: '/images/gallery-4.png', alt: 'Dachshund next to a coffee cup', span: 'row-span-2' },
-  { src: '/images/gallery-5.png', alt: 'Cozy coffee shop interior', span: '' },
-  { src: '/images/gallery-6.png', alt: 'Glass of cold brew with ice', span: '' },
+  { src: '/images/gallery/gallery-1.png', alt: 'Latte with latte art', span: 'row-span-2' },
+  { src: '/images/gallery/gallery-2.png', alt: 'Dachshund resting on a café bench', span: '' },
+  { src: '/images/gallery/gallery-3.png', alt: 'Barista pulling an espresso shot', span: '' },
+  { src: '/images/gallery/gallery-4.png', alt: 'Dachshund next to a coffee cup', span: 'row-span-2' },
+  { src: '/images/gallery/gallery-5.png', alt: 'Cozy coffee shop interior', span: '' },
+  { src: '/images/gallery/gallery-6.png', alt: 'Glass of cold brew with ice', span: '' },
 ]
 
 export function Gallery() {
@@ -37,7 +37,7 @@ export function Gallery() {
             className={`group relative overflow-hidden rounded-[1.75rem] ${img.span}`}
           >
             <Image
-              src={img.src || '/placeholder.svg'}
+              src={img.src}
               alt={img.alt}
               fill
               loading="lazy"
