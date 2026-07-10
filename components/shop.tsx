@@ -1,10 +1,10 @@
 'use client'
 
 import { motion } from 'motion/react'
+import Image from 'next/image'
 import { useLang } from '@/lib/i18n'
 import { ShoppingBag } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { CoffeeBagSvg } from '@/components/coffee-bag-svg'
 
 type Product = {
   nameRo: string
@@ -15,72 +15,70 @@ type Product = {
   descEn: string
   badge?: { ro: string; en: string }
   accent: string
-  bag: { bagColor: string; flapColor: string; labelColor: string; accentColor: string }
+  image: string
 }
 
 const products: Product[] = [
   {
-    nameRo: 'Lăbuță de Dimineață',
-    nameEn: 'Morning Paw',
-    weight: '250g',
-    price: '49 lei',
-    descRo: 'Un blend delicat de Etiopia & Colombia. Exact cât îi trebuie lui Zucchini să-și miște coada la prima cafea.',
-    descEn: "A delicate Ethiopia & Colombia blend. Just enough to get Zucchini's tail wagging at first sip.",
-    badge: { ro: '⭐ Preferat', en: '⭐ Fan fav' },
-    accent: 'bg-mustard/20 border-mustard/40',
-    bag: { bagColor: '#D4A843', flapColor: '#B8902F', labelColor: '#8B6914', accentColor: '#F5D78A' },
-  },
-  {
-    nameRo: 'Os Prăjit Intens',
-    nameEn: 'Dark Roast Bone',
-    weight: '250g',
-    price: '52 lei',
-    descRo: 'Prăjit închis, tare și fără scuze. Pentru zilele în care Zucchini latră la toată lumea din parc.',
-    descEn: 'Dark, bold and unapologetic. For the days Zucchini barks at everyone in the park.',
-    accent: 'bg-terracotta/10 border-terracotta/30',
-    bag: { bagColor: '#5C2E0E', flapColor: '#3D1A06', labelColor: '#2A1004', accentColor: '#C4703A' },
-  },
-  {
-    nameRo: 'Teckel Signature',
-    nameEn: 'Teckel Signature',
-    weight: '250g · 500g',
-    price: '55 / 99 lei',
-    descRo: 'Blendăul casei. Lung ca un teckel, aromat ca o cafenea bună. Aprobat cu ambele lăbuțe față.',
-    descEn: 'The house blend. Long like a dachshund, aromatic like a good café. Approved with both front paws.',
-    badge: { ro: '🏠 Casa', en: '🏠 House' },
-    accent: 'bg-forest/10 border-forest/30',
-    bag: { bagColor: '#2D5A3D', flapColor: '#1A3D28', labelColor: '#0F2419', accentColor: '#7EC89A' },
-  },
-  {
-    nameRo: 'Siesta lui Zucchini',
-    nameEn: "Zucchini's Nap",
+    nameRo: 'Colombia Patio Bonito',
+    nameEn: 'Colombia Patio Bonito',
     weight: '200g',
-    price: '46 lei',
-    descRo: 'Decafeinizat, ușor și floral. Perfect pentru după-amiezi leneșe — exact cum doarme Zucchini pe canapea.',
-    descEn: 'Decaf, light and floral. Perfect for lazy afternoons — just like Zucchini napping on the couch.',
+    price: '80 lei',
+    descRo: 'Filtru washed din Caldono, Cauca — lămâie siciliană, zmeură galbenă, coacăze roșii și o urmă florală de ceai. Zucchini aprobă orice miroase a fructe de pădure.',
+    descEn: 'Washed filter from Caldono, Cauca — Sicilian lemon, yellow raspberries, red currants and a floral tea finish. Zucchini approves anything that smells like berries.',
+    accent: 'bg-mustard/20 border-mustard/40',
+    image: '/images/shop/columbia_coffee.png',
+  },
+  {
+    nameRo: 'Ethiopia Buture',
+    nameEn: 'Ethiopia Buture',
+    weight: '200g',
+    price: '75 lei',
+    descRo: 'Espresso washed din Jimma — bomboane de portocală, caramel și o urmă de ciocolată neagră. Aciditate vie, dulceață care ține de foc.',
+    descEn: 'Washed espresso from Jimma — orange candies, caramel fudge and a dark chocolate finish. Bright acidity balanced by a lingering sweetness.',
+    accent: 'bg-terracotta/10 border-terracotta/30',
+    image: '/images/shop/ethiopia_coffee.png',
+  },
+  {
+    nameRo: 'Burundi Masha',
+    nameEn: 'Burundi Masha',
+    weight: '200g',
+    price: '75 lei',
+    descRo: 'Procesat honey la stația Masha, Kayanza — citrice proaspete, mușețel dulce, ceai de lămâie și o urmă delicată de anason stelat.',
+    descEn: 'Honey-processed at the Masha station, Kayanza — fresh citrus, sweet chamomile, lemon tea and a delicate hint of star anise.',
     accent: 'bg-accent/50 border-border',
-    bag: { bagColor: '#B8A9D4', flapColor: '#8E7DB8', labelColor: '#5C4E8A', accentColor: '#E8E0F5' },
+    image: '/images/shop/masha_coffee.png',
   },
   {
-    nameRo: 'Filtru de Haită',
-    nameEn: 'Pack Filter',
-    weight: '150g',
-    price: '39 lei',
-    descRo: 'Single origin din Kenya. Zucchini a mirosit saci întregi de boabe ca să-l aleagă pe acesta.',
-    descEn: 'Single origin from Kenya. Zucchini sniffed whole sacks of beans to pick this one.',
+    nameRo: 'Summer Edition',
+    nameEn: 'Summer Edition',
+    weight: '200g',
+    price: '80 lei',
+    descRo: 'Blend de vară Columbia & Etiopia, washed — bomboane, milkshake de căpșuni, ceai rece și cais. Perfect pentru terasă și zile lungi.',
+    descEn: 'Summer blend of Colombia & Ethiopia, washed — candies, strawberry milkshake, iced tea and apricot. Perfect for the terrace on long summer days.',
+    badge: { ro: '☀️ Ediție de vară', en: '☀️ Summer edition' },
     accent: 'bg-secondary/50 border-border',
-    bag: { bagColor: '#C4956A', flapColor: '#A0724A', labelColor: '#6B4A2A', accentColor: '#EDD5B5' },
+    image: '/images/shop/summer_coffee.png',
   },
   {
-    nameRo: 'Cutia cu Surprize',
-    nameEn: 'Surprise Box',
-    weight: '3 × 150g',
-    price: '119 lei',
-    descRo: 'Trei sorturi diferite, ambalate ca un cadou. Zucchini alege el ce intră — boss e boss.',
-    descEn: 'Three different coffees, gift-wrapped. Zucchini picks what goes in — boss is boss.',
-    badge: { ro: '🎁 Cadou', en: '🎁 Gift' },
+    nameRo: 'Naughty Surfer',
+    nameEn: 'Naughty Surfer',
+    weight: '200g',
+    price: '80 lei',
+    descRo: 'Blend espresso natural, Etiopia Yirgacheffe & Columbia Geisha — căpșuni, zmeură și un final cremos de pralină cu nuga.',
+    descEn: 'Natural-process espresso blend, Ethiopia Yirgacheffe & Colombia Geisha — strawberries, raspberries and a creamy nougat-praline finish.',
+    accent: 'bg-forest/10 border-forest/30',
+    image: '/images/shop/surfer_coffee.png',
+  },
+  {
+    nameRo: 'Naughty Unicorn',
+    nameEn: 'Naughty Unicorn',
+    weight: '200g',
+    price: '80 lei',
+    descRo: 'Blend filtru Etiopia & Columbia (Huila) — cireșe maoam, ciocolată cu lapte și înghețată de vanilie. Colorat pe cât de dulce e.',
+    descEn: 'Filter blend of Ethiopia & Colombia (Huila) — cherry maoam, milk chocolate and vanilla ice cream. As colorful as it tastes.',
     accent: 'bg-warm-red/10 border-warm-red/30',
-    bag: { bagColor: '#C0392B', flapColor: '#922B21', labelColor: '#641E16', accentColor: '#F1948A' },
+    image: '/images/shop/unicorn_coffee.png',
   },
 ]
 
@@ -123,8 +121,15 @@ export function Shop() {
               </span>
             )}
 
-            <div className="mx-auto w-36 h-48">
-              <CoffeeBagSvg {...p.bag} />
+            <div className="relative mx-auto aspect-square w-full max-w-48">
+              <Image
+                src={p.image}
+                alt={lang === 'ro' ? p.nameRo : p.nameEn}
+                fill
+                loading="lazy"
+                sizes="(max-width: 640px) 60vw, 220px"
+                className="object-contain"
+              />
             </div>
 
             <div className="mt-2 flex-1">
