@@ -11,7 +11,7 @@ function formatDate(raw: string) {
 
 function buildEmail(name: string, phone: string, guests: string, date: string, message: string) {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? ''
-  const logoUrl = siteUrl ? `${siteUrl}/images/teckel-logo.jpg` : ''
+  const logoUrl = siteUrl ? `${siteUrl}/images/teckel-logo-email.jpg` : ''
 
   const row = (label: string, value: string) => `
     <tr>
