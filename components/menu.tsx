@@ -1,9 +1,7 @@
-'use client'
-
 import Link from 'next/link'
-import { motion } from 'motion/react'
+import { Reveal } from '@/components/reveal'
 import { Coffee, Snowflake, Sun, Citrus, Martini, Zap, type LucideIcon } from 'lucide-react'
-import { useLang, type Lang } from '@/lib/i18n'
+import { tr, type Lang } from '@/lib/i18n'
 
 type Item = { name: { ro: string; en: string }; desc?: { ro: string; en: string }; price: string }
 type Category = {
@@ -119,7 +117,7 @@ const reveal = (i: number) => ({
 
 function CategoryCard({ cat, lang, index }: { cat: Category; lang: Lang; index: number }) {
   return (
-    <motion.div
+    <Reveal
       {...reveal(index)}
       className={`flex flex-col overflow-hidden rounded-[2rem] border border-border backdrop-blur-md ${cat.cardBg}`}
     >
@@ -142,30 +140,29 @@ function CategoryCard({ cat, lang, index }: { cat: Category; lang: Lang; index: 
           </li>
         ))}
       </ul>
-    </motion.div>
+    </Reveal>
   )
 }
 
-export function Menu() {
-  const { lang, tr } = useLang()
+export function Menu({ lang }: { lang: Lang }) {
   return (
     <section id="menu" className="scroll-mt-24 py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-5">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-semibold uppercase tracking-widest text-terracotta">
-            {tr('menuKicker')}
+            {tr(lang, 'menuKicker')}
           </span>
           <h2 className="mt-3 font-heading text-4xl font-black tracking-tight text-foreground sm:text-5xl text-balance">
-            {tr('menuTitle')}
+            {tr(lang, 'menuTitle')}
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground text-pretty">{tr('menuSub')}</p>
+          <p className="mt-4 text-lg text-muted-foreground text-pretty">{tr(lang, 'menuSub')}</p>
         </div>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2">
           {categories.map((cat, i) => (
             <CategoryCard key={cat.id} cat={cat} lang={lang} index={i} />
           ))}
-          <motion.div
+          <Reveal
             {...reveal(categories.length)}
             className="flex flex-col items-center justify-center gap-4 overflow-hidden rounded-[2rem] border border-border bg-secondary/50 backdrop-blur-md p-8 text-center sm:col-span-2"
           >
@@ -181,7 +178,7 @@ export function Menu() {
             >
               {lang === 'ro' ? 'Meniu complet →' : 'Full menu →'}
             </Link>
-          </motion.div>
+          </Reveal>
         </div>
       </div>
     </section>

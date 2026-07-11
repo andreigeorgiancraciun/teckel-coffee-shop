@@ -1,13 +1,3 @@
-'use client'
-
-import {
-  createContext,
-  useContext,
-  useState,
-  useCallback,
-  type ReactNode,
-} from 'react'
-
 export type Lang = 'ro' | 'en'
 
 type Dict = Record<string, { ro: string; en: string }>
@@ -75,7 +65,8 @@ export const t: Dict = {
   visitTitle: { ro: 'Treci pe la noi', en: 'Come visit' },
   hours: { ro: 'Program', en: 'Hours' },
   address: { ro: 'Adresă', en: 'Address' },
-  weekdays: { ro: 'Luni – Vineri', en: 'Mon – Fri' },
+  mondayWednesday: { ro: 'Luni – Miercuri', en: 'Mon – Wed' },
+  thursdayFriday: { ro: 'Joi – Vineri', en: 'Thu – Fri' },
   saturday: { ro: 'Sâmbătă', en: 'Saturday' },
   sunday: { ro: 'Duminică', en: 'Sunday' },
 
@@ -103,22 +94,6 @@ export const t: Dict = {
   footerRights: { ro: 'Toate drepturile rezervate.', en: 'All rights reserved.' },
 }
 
-type Ctx = { lang: Lang; toggle: () => void; tr: (k: keyof typeof t) => string }
-const LangContext = createContext<Ctx | null>(null)
-
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>('ro')
-  const toggle = useCallback(() => setLang((l) => (l === 'ro' ? 'en' : 'ro')), [])
-  const tr = useCallback((k: keyof typeof t) => t[k][lang], [lang])
-  return (
-    <LangContext.Provider value={{ lang, toggle, tr }}>
-      {children}
-    </LangContext.Provider>
-  )
-}
-
-export function useLang() {
-  const ctx = useContext(LangContext)
-  if (!ctx) throw new Error('useLang must be used within LanguageProvider')
-  return ctx
+export function tr(lang: Lang, key: keyof typeof t): string {
+  return t[key][lang]
 }

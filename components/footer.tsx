@@ -1,12 +1,9 @@
-'use client'
-
 import Image from 'next/image'
-import { useLang } from '@/lib/i18n'
+import { tr, type Lang } from '@/lib/i18n'
 import { socials } from '@/components/social-icons'
 import { PawPrint } from 'lucide-react'
 
-export function Footer() {
-  const { tr } = useLang()
+export function Footer({ lang }: { lang: Lang }) {
   return (
     <footer className="bg-foreground text-background">
       <div className="mx-auto max-w-6xl px-5 py-14">
@@ -30,7 +27,7 @@ export function Footer() {
               </span>
             </div>
           </div>
-          <p className="text-sm text-background/70">{tr('footerTagline')}</p>
+          <p className="text-sm text-background/70">{tr(lang, 'footerTagline')}</p>
 
           <div className="flex items-center gap-3">
             {socials.map(({ name, href, Icon }) => (
@@ -50,7 +47,7 @@ export function Footer() {
 
         <div className="mt-10 border-t border-background/15 pt-6 text-center text-sm text-background/60">
           <span className="inline-flex items-center gap-1.5">
-            © {new Date().getFullYear()} Teckel Coffee &amp; Cocktails. {tr('footerRights')}
+            © {new Date().getFullYear()} Teckel Coffee &amp; Cocktails. {tr(lang, 'footerRights')}
             <PawPrint className="h-3.5 w-3.5 text-background/60" />
           </span>
         </div>

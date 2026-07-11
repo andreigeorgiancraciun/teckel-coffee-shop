@@ -1,8 +1,6 @@
-'use client'
-
 import Image from 'next/image'
-import { motion } from 'motion/react'
-import { useLang } from '@/lib/i18n'
+import { Reveal } from '@/components/reveal'
+import { tr, type Lang } from '@/lib/i18n'
 import { PawPrint, Coffee, Heart } from 'lucide-react'
 
 const reveal = {
@@ -12,19 +10,17 @@ const reveal = {
   transition: { duration: 0.55, ease: 'easeOut' as const },
 }
 
-export function About() {
-  const { tr } = useLang()
-
+export function About({ lang }: { lang: Lang }) {
   const badges = [
-    { icon: Coffee, label: tr('aboutBadge1') },
-    { icon: PawPrint, label: tr('aboutBadge2') },
-    { icon: Heart, label: tr('aboutBadge3') },
+    { icon: Coffee, label: tr(lang, 'aboutBadge1') },
+    { icon: PawPrint, label: tr(lang, 'aboutBadge2') },
+    { icon: Heart, label: tr(lang, 'aboutBadge3') },
   ]
 
   return (
     <section id="about" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-20 md:py-28">
       <div className="grid items-center gap-12 md:grid-cols-2">
-        <motion.div {...reveal} className="relative order-2 md:order-1">
+        <Reveal {...reveal} className="relative order-2 md:order-1">
           <div className="relative overflow-hidden rounded-[2.5rem] bg-forest/10 p-6">
             <div className="absolute right-5 top-5 h-20 w-20 rounded-full bg-mustard/50" />
             <div className="relative aspect-square w-full">
@@ -44,20 +40,20 @@ export function About() {
             </p>
             <p className="text-xs text-muted-foreground">Zucchini, teckel arlechin</p>
           </div>
-        </motion.div>
+        </Reveal>
 
-        <motion.div {...reveal} className="order-1 md:order-2">
+        <Reveal {...reveal} className="order-1 md:order-2">
           <span className="text-sm font-semibold uppercase tracking-widest text-terracotta">
-            {tr('aboutKicker')}
+            {tr(lang, 'aboutKicker')}
           </span>
           <h2 className="mt-3 font-heading text-4xl font-black tracking-tight text-foreground sm:text-5xl text-balance">
-            {tr('aboutTitle')}
+            {tr(lang, 'aboutTitle')}
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground text-pretty">
-            {tr('aboutP1')}
+            {tr(lang, 'aboutP1')}
           </p>
           <p className="mt-4 text-lg leading-relaxed text-muted-foreground text-pretty">
-            {tr('aboutP2')}
+            {tr(lang, 'aboutP2')}
           </p>
 
           <div className="mt-7 flex flex-wrap gap-3">
@@ -71,7 +67,7 @@ export function About() {
               </span>
             ))}
           </div>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   )

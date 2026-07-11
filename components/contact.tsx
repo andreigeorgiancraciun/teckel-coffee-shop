@@ -6,11 +6,10 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
-import { useLang } from '@/lib/i18n'
+import { tr, type Lang } from '@/lib/i18n'
 import { PawPrint } from 'lucide-react'
 
-export function Contact() {
-  const { tr } = useLang()
+export function Contact({ lang }: { lang: Lang }) {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -37,13 +36,13 @@ export function Contact() {
             <PawPrint className="absolute right-16 bottom-6 h-11 w-11 -rotate-15 opacity-15" />
             <PawPrint className="absolute left-1/2 top-4 h-7 w-7 rotate-20 opacity-10" />
             <span className="text-sm font-semibold uppercase tracking-widest text-primary-foreground/80">
-              {tr('contactKicker')}
+              {tr(lang, 'contactKicker')}
             </span>
             <h2 className="mt-3 font-heading text-4xl font-black tracking-tight text-balance">
-              {tr('contactTitle')}
+              {tr(lang, 'contactTitle')}
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-primary-foreground/85 text-pretty">
-              {tr('contactSub')}
+              {tr(lang, 'contactSub')}
             </p>
           </div>
 
@@ -54,7 +53,7 @@ export function Contact() {
                   <PawPrint className="h-8 w-8" />
                 </span>
                 <p className="mt-4 font-heading text-2xl font-bold text-foreground text-balance">
-                  {tr('formSuccess')}
+                  {tr(lang, 'formSuccess')}
                 </p>
               </div>
             ) : (
@@ -98,17 +97,17 @@ export function Contact() {
               >
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="flex flex-col gap-1.5">
-                    <Label htmlFor="name">{tr('formName')}</Label>
+                    <Label htmlFor="name">{tr(lang, 'formName')}</Label>
                     <Input id="name" name="name" className="rounded-xl" />
                     {fieldErrors.name && <p className="text-xs text-destructive">{fieldErrors.name}</p>}
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <Label htmlFor="phone">{tr('formPhone')}</Label>
+                    <Label htmlFor="phone">{tr(lang, 'formPhone')}</Label>
                     <Input id="phone" name="phone" type="tel" className="rounded-xl" />
                     {fieldErrors.phone && <p className="text-xs text-destructive">{fieldErrors.phone}</p>}
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <Label htmlFor="guests">{tr('formGuests')}</Label>
+                    <Label htmlFor="guests">{tr(lang, 'formGuests')}</Label>
                     <Input
                       id="guests"
                       name="guests"
@@ -119,7 +118,7 @@ export function Contact() {
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <Label htmlFor="date">{tr('formDate')}</Label>
+                    <Label htmlFor="date">{tr(lang, 'formDate')}</Label>
                     <Input
                       id="date"
                       name="date"
@@ -131,14 +130,14 @@ export function Contact() {
                   </div>
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <Label htmlFor="message">{tr('formMessage')}</Label>
+                  <Label htmlFor="message">{tr(lang, 'formMessage')}</Label>
                   <Textarea id="message" name="message" rows={3} className="rounded-xl" />
                 </div>
                 {error && (
                   <p className="text-sm text-destructive">{error}</p>
                 )}
                 <Button type="submit" size="lg" disabled={loading} className="mt-2 rounded-full">
-                  {loading ? 'Se trimite…' : tr('formSubmit')}
+                  {loading ? 'Se trimite…' : tr(lang, 'formSubmit')}
                 </Button>
               </form>
             )}

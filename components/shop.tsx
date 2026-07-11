@@ -1,18 +1,9 @@
-'use client'
-
-import { useState } from 'react'
-import dynamic from 'next/dynamic'
-import { motion } from 'motion/react'
 import Image from 'next/image'
-import { useLang } from '@/lib/i18n'
-import { ShoppingBag, Search } from 'lucide-react'
+import { Reveal } from '@/components/reveal'
+import { tr, type Lang } from '@/lib/i18n'
+import { ShoppingBag } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-
-// Modalul (și @base-ui/react/dialog) se încarcă doar la click pe lupă,
-// nu blochează JS-ul critic de la încărcarea inițială a paginii.
-const ProductDetailsDialog = dynamic(() => import('@/components/product-details-dialog'), {
-  ssr: false,
-})
+import { ShopInteractions, ProductSearchTrigger } from '@/components/shop-interactions'
 
 export type Bi = { ro: string; en: string }
 
@@ -37,7 +28,7 @@ export type Product = {
   details: ProductDetails
 }
 
-const products: Product[] = [
+export const products: Product[] = [
   {
     nameRo: 'Colombia Patio Bonito',
     nameEn: 'Colombia Patio Bonito',
@@ -145,7 +136,7 @@ const products: Product[] = [
 
 const WHATSAPP_NUMBER = '40763823438'
 
-function buildWhatsappLink(product: Product, lang: 'ro' | 'en') {
+export function buildWhatsappLink(product: Product, lang: Lang) {
   const message =
     lang === 'ro'
       ? `Bună! Aș vrea să comand ${product.nameRo} (${product.weight}).`
@@ -153,13 +144,10 @@ function buildWhatsappLink(product: Product, lang: 'ro' | 'en') {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
 }
 
-export function Shop() {
-  const { tr, lang } = useLang()
-  const [selected, setSelected] = useState<Product | null>(null)
-
+export function Shop({ lang }: { lang: Lang }) {
   return (
     <section id="shop" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-20 md:py-28">
-      <motion.div
+      <Reveal
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.1 }}
@@ -167,84 +155,69 @@ export function Shop() {
         className="text-center"
       >
         <span className="text-sm font-semibold uppercase tracking-widest text-terracotta">
-          {tr('shopKicker')}
+          {tr(lang, 'shopKicker')}
         </span>
         <h2 className="mt-3 font-heading text-4xl font-black tracking-tight text-foreground sm:text-5xl text-balance">
-          {tr('shopTitle')}
+          {tr(lang, 'shopTitle')}
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground text-pretty">
-          {tr('shopSub')}
+          {tr(lang, 'shopSub')}
         </p>
-      </motion.div>
+      </Reveal>
 
-      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map((p, i) => (
-          <motion.div
-            key={p.nameRo}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.45, delay: i * 0.07 }}
-            className={`relative flex flex-col rounded-[2rem] border p-6 ${p.accent}`}
-          >
-            {p.badge && (
-              <span className="absolute right-5 top-5 rounded-full bg-card px-3 py-1 text-xs font-bold text-foreground shadow-sm">
-                {lang === 'ro' ? p.badge.ro : p.badge.en}
-              </span>
-            )}
+      <ShopInteractions lang={lang}>
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {products.map((p, i) => (
+            <Reveal
+              key={p.nameRo}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.45, delay: i * 0.07 }}
+              className={`relative flex flex-col rounded-[2rem] border p-6 ${p.accent}`}
+            >
+              {p.badge && (
+                <span className="absolute right-5 top-5 rounded-full bg-card px-3 py-1 text-xs font-bold text-foreground shadow-sm">
+                  {lang === 'ro' ? p.badge.ro : p.badge.en}
+                </span>
+              )}
 
-            <div className="relative mx-auto aspect-square w-full max-w-48">
-              <Image
-                src={p.image}
-                alt={lang === 'ro' ? p.nameRo : p.nameEn}
-                fill
-                loading="lazy"
-                sizes="(max-width: 640px) 60vw, 220px"
-                className="object-contain"
-              />
-              <button
-                type="button"
-                onClick={() => setSelected(p)}
-                aria-label={tr('shopDetails')}
-                className="absolute bottom-1 right-1 flex h-10 w-10 items-center justify-center rounded-full bg-card text-foreground shadow-md transition-transform hover:scale-105 hover:text-primary"
-              >
-                <Search className="h-4.5 w-4.5" />
-              </button>
-            </div>
+              <div className="relative mx-auto aspect-square w-full max-w-48">
+                <Image
+                  src={p.image}
+                  alt={lang === 'ro' ? p.nameRo : p.nameEn}
+                  fill
+                  loading="lazy"
+                  sizes="(max-width: 640px) 60vw, 220px"
+                  className="object-contain"
+                />
+                <ProductSearchTrigger product={p} ariaLabel={tr(lang, 'shopDetails')} />
+              </div>
 
-            <div className="mt-2 flex-1">
-              <h3 className="font-heading text-xl font-black text-foreground">
-                {lang === 'ro' ? p.nameRo : p.nameEn}
-              </h3>
-              <p className="mt-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                {p.weight}
-              </p>
-            </div>
+              <div className="mt-2 flex-1">
+                <h3 className="font-heading text-xl font-black text-foreground">
+                  {lang === 'ro' ? p.nameRo : p.nameEn}
+                </h3>
+                <p className="mt-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                  {p.weight}
+                </p>
+              </div>
 
-            <div className="mt-5 flex items-center justify-between">
-              <span className="font-heading text-2xl font-black text-foreground">
-                {p.price}
-              </span>
-              <Button size="sm" className="rounded-full gap-1.5" asChild>
-                <a href={buildWhatsappLink(p, lang)} target="_blank" rel="noopener noreferrer">
-                  <ShoppingBag className="h-3.5 w-3.5" />
-                  {tr('shopOrder')}
-                </a>
-              </Button>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-
-      {selected && (
-        <ProductDetailsDialog
-          product={selected}
-          onClose={() => setSelected(null)}
-          lang={lang}
-          tr={tr}
-          whatsappLink={buildWhatsappLink(selected, lang)}
-        />
-      )}
+              <div className="mt-5 flex items-center justify-between">
+                <span className="font-heading text-2xl font-black text-foreground">
+                  {p.price}
+                </span>
+                <Button size="sm" className="rounded-full gap-1.5" asChild>
+                  <a href={buildWhatsappLink(p, lang)} target="_blank" rel="noopener noreferrer">
+                    <ShoppingBag className="h-3.5 w-3.5" />
+                    {tr(lang, 'shopOrder')}
+                  </a>
+                </Button>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </ShopInteractions>
     </section>
   )
 }

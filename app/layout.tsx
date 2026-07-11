@@ -36,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="ro"
       className={`${fraunces.variable} ${dmSans.variable} ${geistMono.variable} bg-background`}
     >
       <body className="font-sans antialiased">

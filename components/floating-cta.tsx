@@ -3,12 +3,11 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'motion/react'
-import { useLang } from '@/lib/i18n'
+import { tr, type Lang } from '@/lib/i18n'
 
 const MotionLink = motion.create(Link)
 
-export function FloatingCta() {
-  const { tr } = useLang()
+export function FloatingCta({ lang }: { lang: Lang }) {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -33,7 +32,7 @@ export function FloatingCta() {
           transition={{ duration: 0.25, ease: 'easeOut' }}
           className="fixed bottom-6 right-6 z-50 rounded-full bg-primary px-6 py-3 font-heading text-sm font-bold text-primary-foreground shadow-lg hover:opacity-90 transition-opacity"
         >
-          {tr('navBook')} ☕
+          {tr(lang, 'navBook')} ☕
         </MotionLink>
       )}
     </AnimatePresence>

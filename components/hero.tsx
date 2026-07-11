@@ -1,13 +1,9 @@
-'use client'
-
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { useLang } from '@/lib/i18n'
+import { tr, type Lang } from '@/lib/i18n'
 
-export function Hero() {
-  const { tr } = useLang()
-
+export function Hero({ lang }: { lang: Lang }) {
   return (
     <section
       id="top"
@@ -16,21 +12,21 @@ export function Hero() {
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-5 pb-16 md:grid-cols-2">
         <div style={{ animation: 'hero-text-in 0.6s cubic-bezier(0,0,0.58,1) both' }}>
           <h1 className="mt-6 font-heading text-5xl font-black leading-[0.95] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-            {tr('heroTitle1')}
+            {tr(lang, 'heroTitle1')}
             <br />
-            <span className="text-primary">{tr('heroTitle2')}</span>
+            <span className="text-primary">{tr(lang, 'heroTitle2')}</span>
           </h1>
 
           <p className="mt-6 max-w-md text-lg leading-relaxed text-muted-foreground">
-            {tr('heroSub')}
+            {tr(lang, 'heroSub')}
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild size="lg" className="rounded-full px-7 text-base">
-              <Link href="#menu">{tr('heroCta')}</Link>
+              <Link href="#menu">{tr(lang, 'heroCta')}</Link>
             </Button>
             <Button asChild size="lg" className="rounded-full px-7 text-base">
-              <Link href="#shop">{tr('heroCta2')}</Link>
+              <Link href="#shop">{tr(lang, 'heroCta2')}</Link>
             </Button>
           </div>
         </div>

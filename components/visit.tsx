@@ -1,25 +1,22 @@
-'use client'
-
-import { motion } from 'motion/react'
-import { useLang } from '@/lib/i18n'
+import { Reveal } from '@/components/reveal'
+import { tr, type Lang } from '@/lib/i18n'
 import { MapPin, Clock, Phone } from 'lucide-react'
 
-export function Visit() {
-  const { tr } = useLang()
+export function Visit({ lang }: { lang: Lang }) {
   return (
     <section id="visit" className="scroll-mt-24 py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-5">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-semibold uppercase tracking-widest text-terracotta">
-            {tr('visitKicker')}
+            {tr(lang, 'visitKicker')}
           </span>
           <h2 className="mt-3 font-heading text-4xl font-black tracking-tight text-foreground sm:text-5xl text-balance">
-            {tr('visitTitle')}
+            {tr(lang, 'visitTitle')}
           </h2>
         </div>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-5">
-          <motion.div
+          <Reveal
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
@@ -32,9 +29,9 @@ export function Visit() {
               className="h-80 w-full lg:h-full"
               loading="lazy"
             />
-          </motion.div>
+          </Reveal>
 
-          <motion.div
+          <Reveal
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
@@ -47,7 +44,7 @@ export function Visit() {
                   <MapPin className="h-5 w-5" />
                 </span>
                 <h3 className="font-heading text-xl font-bold text-foreground">
-                  {tr('address')}
+                  {tr(lang, 'address')}
                 </h3>
               </div>
               <a
@@ -82,29 +79,29 @@ export function Visit() {
                   <Clock className="h-5 w-5" />
                 </span>
                 <h3 className="font-heading text-xl font-bold text-foreground">
-                  {tr('hours')}
+                  {tr(lang, 'hours')}
                 </h3>
               </div>
               <ul className="mt-4 space-y-2 text-muted-foreground">
                 <li className="flex justify-between">
-                  <span>Luni – Miercuri</span>
+                  <span>{tr(lang, 'mondayWednesday')}</span>
                   <span className="font-medium text-foreground">08:00 – 17:00</span>
                 </li>
                 <li className="flex justify-between">
-                  <span>Joi – Vineri</span>
+                  <span>{tr(lang, 'thursdayFriday')}</span>
                   <span className="font-medium text-foreground">08:00 – 22:00</span>
                 </li>
                 <li className="flex justify-between">
-                  <span>Sâmbătă</span>
+                  <span>{tr(lang, 'saturday')}</span>
                   <span className="font-medium text-foreground">10:00 – 22:00</span>
                 </li>
                 <li className="flex justify-between">
-                  <span>Duminică</span>
+                  <span>{tr(lang, 'sunday')}</span>
                   <span className="font-medium text-foreground">10:00 – 22:00</span>
                 </li>
               </ul>
             </div>
-          </motion.div>
+          </Reveal>
         </div>
       </div>
     </section>

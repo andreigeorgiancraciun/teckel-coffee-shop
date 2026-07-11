@@ -11,31 +11,31 @@ import PawTrail from '@/components/paw-trail-loader'
 import { BgBlobs } from '@/components/bg-blobs'
 
 export const metadata: Metadata = {
-  title: 'Teckel Coffee & Cocktails — cafea de specialitate cu Zucchini',
+  title: 'Teckel Coffee & Cocktails — specialty coffee with Zucchini',
   description:
-    'Cafenea de specialitate condusă (mai mult) de Zucchini, teckelul nostru arlechin. Espresso, filtru, cold brew și energie bună.',
+    'A specialty coffee shop run (mostly) by Zucchini, our harlequin dachshund. Espresso, filter, cold brew & good vibes.',
   alternates: {
-    canonical: '/',
+    canonical: '/en',
     languages: { ro: '/', en: '/en' },
   },
 }
 
-// Rezervările sunt ascunse temporar — Contact și FloatingCta se readaugă când e gata fluxul
-export default function Page() {
+// Reservations are hidden for now — Contact and FloatingCta come back once the flow is ready
+export default function EnPage() {
   return (
     <>
-      <Navbar lang="ro" />
+      <Navbar lang="en" />
       <main className="relative">
         <BgBlobs />
         <PawTrail />
-        <Hero lang="ro" />
-        <Menu lang="ro" />
-        <Shop lang="ro" />
-        <About lang="ro" />
-        <Gallery lang="ro" />
-        <Visit lang="ro" />
+        <Hero lang="en" />
+        <Menu lang="en" />
+        <Shop lang="en" />
+        <About lang="en" />
+        <Gallery lang="en" />
+        <Visit lang="en" />
       </main>
-      <Footer lang="ro" />
+      <Footer lang="en" />
     </>
   )
 }

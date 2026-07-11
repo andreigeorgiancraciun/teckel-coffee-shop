@@ -1,8 +1,6 @@
-'use client'
-
 import Image from 'next/image'
-import { motion } from 'motion/react'
-import { useLang } from '@/lib/i18n'
+import { Reveal } from '@/components/reveal'
+import { tr, type Lang } from '@/lib/i18n'
 
 const images = [
   { src: '/images/gallery/gallery-1.png', alt: 'Latte with latte art', span: 'row-span-2' },
@@ -13,22 +11,21 @@ const images = [
   { src: '/images/gallery/gallery-6.png', alt: 'Glass of cold brew with ice', span: '' },
 ]
 
-export function Gallery() {
-  const { tr } = useLang()
+export function Gallery({ lang }: { lang: Lang }) {
   return (
     <section id="gallery" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-20 md:py-28">
       <div className="mx-auto max-w-2xl text-center">
         <span className="text-sm font-semibold uppercase tracking-widest text-terracotta">
-          {tr('galleryKicker')}
+          {tr(lang, 'galleryKicker')}
         </span>
         <h2 className="mt-3 font-heading text-4xl font-black tracking-tight text-foreground sm:text-5xl text-balance">
-          {tr('galleryTitle')}
+          {tr(lang, 'galleryTitle')}
         </h2>
       </div>
 
       <div className="mt-12 grid auto-rows-[180px] grid-cols-2 gap-4 sm:auto-rows-[220px] md:grid-cols-3">
         {images.map((img, i) => (
-          <motion.div
+          <Reveal
             key={img.src}
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -44,7 +41,7 @@ export function Gallery() {
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 320px"
               className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
-          </motion.div>
+          </Reveal>
         ))}
       </div>
     </section>
