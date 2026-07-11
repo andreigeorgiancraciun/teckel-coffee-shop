@@ -2,12 +2,14 @@
 
 import Link from 'next/link'
 import { motion } from 'motion/react'
+import { Coffee, Snowflake, Sun, Citrus, Martini, Zap, type LucideIcon } from 'lucide-react'
 import { useLang, type Lang } from '@/lib/i18n'
 
 type Item = { name: { ro: string; en: string }; desc?: { ro: string; en: string }; price: string }
 type Category = {
   id: string
   title: { ro: string; en: string }
+  icon: LucideIcon
   accent: string
   chip: string
   cardBg: string
@@ -18,6 +20,7 @@ const categories: Category[] = [
   {
     id: 'espresso',
     title: { ro: 'Espresso', en: 'Espresso' },
+    icon: Coffee,
     accent: 'bg-terracotta',
     chip: 'bg-terracotta/15 text-terracotta',
     cardBg: 'bg-terracotta/10',
@@ -28,17 +31,19 @@ const categories: Category[] = [
       { name: { ro: 'Cortado', en: 'Cortado' }, price: '13' },
       { name: { ro: 'Cappuccino', en: 'Cappuccino' }, price: '15' },
       { name: { ro: 'Flat White', en: 'Flat White' }, price: '18' },
+      { name: { ro: 'Latte', en: 'Latte' }, price: '20' },
     ],
   },
   {
     id: 'specialty',
     title: { ro: 'Cold & Specialty', en: 'Cold & Specialty' },
+    icon: Snowflake,
     accent: 'bg-terracotta',
     chip: 'bg-terracotta/15 text-terracotta',
     cardBg: 'bg-terracotta/10',
     items: [
       { name: { ro: 'Cold Brew', en: 'Cold Brew' }, price: '18' },
-      { name: { ro: 'Latte', en: 'Latte' }, desc: { ro: 'Cald / Rece', en: 'Hot / Iced' }, price: '20' },
+      { name: { ro: 'Iced Latte', en: 'Iced Latte' }, price: '20' },
       { name: { ro: 'Matcha Latte', en: 'Matcha Latte' }, desc: { ro: 'Cald / Rece', en: 'Hot / Iced' }, price: '23' },
       { name: { ro: 'Cold Brew Tonic', en: 'Cold Brew Tonic' }, price: '26' },
       { name: { ro: 'Babyccino', en: 'Babyccino' }, desc: { ro: 'pentru copii', en: 'for kids' }, price: '7' },
@@ -49,6 +54,7 @@ const categories: Category[] = [
   {
     id: 'spritz',
     title: { ro: 'Spritz & Fresh', en: 'Spritz & Fresh' },
+    icon: Sun,
     accent: 'bg-mustard',
     chip: 'bg-mustard/25 text-foreground',
     cardBg: 'bg-mustard/15',
@@ -61,6 +67,7 @@ const categories: Category[] = [
   {
     id: 'gintonic',
     title: { ro: 'Gin & Tonic', en: 'Gin & Tonic' },
+    icon: Citrus,
     accent: 'bg-forest',
     chip: 'bg-forest/15 text-forest',
     cardBg: 'bg-forest/10',
@@ -74,6 +81,7 @@ const categories: Category[] = [
   {
     id: 'classics',
     title: { ro: 'Classics', en: 'Classics' },
+    icon: Martini,
     accent: 'bg-warm-red',
     chip: 'bg-warm-red/15 text-warm-red',
     cardBg: 'bg-warm-red/10',
@@ -89,14 +97,15 @@ const categories: Category[] = [
   {
     id: 'spirits',
     title: { ro: 'Spirits & Shots', en: 'Spirits & Shots' },
+    icon: Zap,
     accent: 'bg-terracotta',
     chip: 'bg-terracotta/15 text-terracotta',
     cardBg: 'bg-terracotta/10',
     items: [
       { name: { ro: 'Vodka Beluga', en: 'Vodka Beluga' }, desc: { ro: '50 ml', en: '50 ml' }, price: '25' },
       { name: { ro: 'Whiskey Glenfiddich', en: 'Whiskey Glenfiddich' }, desc: { ro: '50 ml', en: '50 ml' }, price: '25' },
-      { name: { ro: 'Jägermeister', en: 'Jägermeister' }, price: '18' },
-      { name: { ro: 'Tequila Añejo', en: 'Tequila Añejo' }, price: '23' },
+      { name: { ro: 'Jägermeister', en: 'Jägermeister' }, desc: { ro: '30 ml', en: '30 ml' }, price: '18' },
+      { name: { ro: 'Tequila Añejo', en: 'Tequila Añejo' }, desc: { ro: '30 ml', en: '30 ml' }, price: '23' },
     ],
   },
 ]
@@ -114,7 +123,8 @@ function CategoryCard({ cat, lang, index }: { cat: Category; lang: Lang; index: 
       {...reveal(index)}
       className={`flex flex-col overflow-hidden rounded-[2rem] border border-border backdrop-blur-md ${cat.cardBg}`}
     >
-      <div className={`flex items-center justify-between ${cat.accent} px-6 py-4`}>
+      <div className={`flex items-center gap-2.5 ${cat.accent} px-6 py-4`}>
+        <cat.icon className="h-6 w-6 text-primary-foreground" strokeWidth={2.25} />
         <h3 className="font-heading text-2xl font-black text-primary-foreground">
           {cat.title[lang]}
         </h3>

@@ -29,8 +29,8 @@ function buildEmail(name: string, phone: string, guests: string, date: string, m
 
         <!-- Header -->
         <tr><td style="background:#7c2d12;border-radius:16px 16px 0 0;padding:32px;text-align:center">
-          ${logoUrl ? `<img src="${logoUrl}" alt="Teckel &amp; Co." width="72" height="72" style="border-radius:50%;object-fit:cover;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto">` : ''}
-          <div style="font-size:22px;font-weight:800;color:#fef3c7;letter-spacing:-0.3px">Teckel &amp; Co.</div>
+          ${logoUrl ? `<img src="${logoUrl}" alt="Teckel Coffee &amp; Cocktails" width="72" height="72" style="border-radius:50%;object-fit:cover;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto">` : ''}
+          <div style="font-size:22px;font-weight:800;color:#fef3c7;letter-spacing:-0.3px">Teckel Coffee &amp; Cocktails</div>
           <div style="font-size:13px;color:#fcd9a0;margin-top:4px;letter-spacing:2px;text-transform:uppercase">Rezervare nouă 🐾</div>
         </td></tr>
 
@@ -58,7 +58,7 @@ function buildEmail(name: string, phone: string, guests: string, date: string, m
         <!-- Footer -->
         <tr><td style="background:#292524;border-radius:0 0 16px 16px;padding:20px 32px;text-align:center">
           <p style="margin:0;font-size:12px;color:#a8a29e">
-            Teckel &amp; Co. · Strada Cafelei 12, București · 🐾 Viața e scurtă, bea cafea bună
+            Teckel Coffee &amp; Cocktails · Strada Romulus 23, 030167 București · 🐾 Viața e scurtă, bea cafea bună
           </p>
         </td></tr>
 
@@ -77,7 +77,7 @@ export async function POST(req: Request) {
   }
 
   const { error } = await resend.emails.send({
-    from: 'Teckel & Co. <onboarding@resend.dev>',
+    from: 'Teckel Coffee & Cocktails <onboarding@resend.dev>',
     to: process.env.CONTACT_EMAIL!,
     subject: `🐾 Rezervare nouă — ${name}, ${guests} pers.`,
     html: buildEmail(name, phone, guests, date, message),

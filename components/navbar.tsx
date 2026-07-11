@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useLang } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
 import { socials } from '@/components/social-icons'
@@ -37,7 +38,7 @@ export function Navbar() {
       )}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5">
-        <a href="#top" className="inline-grid w-28 gap-0.5 leading-none text-foreground">
+        <Link href="#top" className="inline-grid w-28 gap-0.5 leading-none text-foreground">
           <Image
             src="/images/dog-logo.png"
             alt="Teckel Coffee & Cocktails logo — a harlequin dachshund"
@@ -56,17 +57,17 @@ export function Navbar() {
               <span>Cocktails</span>
             </span>
           </div>
-        </a>
+        </Link>
 
         <div className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
-            <a
+            <Link
               key={l.href}
               href={l.href}
               className="text-base font-medium text-foreground transition-colors hover:text-primary"
             >
               {l.label}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -123,14 +124,14 @@ export function Navbar() {
         <div className="border-t border-border bg-cream px-5 py-4 md:hidden">
           <div className="flex flex-col gap-3">
             {links.map((l) => (
-              <a
+              <Link
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
                 className="rounded-xl px-3 py-2 text-base font-medium text-foreground hover:bg-secondary"
               >
                 {l.label}
-              </a>
+              </Link>
             ))}
             <div className="mt-2 flex items-center gap-2">
               {socials.map(({ name, href, Icon }) => (

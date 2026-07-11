@@ -1,8 +1,11 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'motion/react'
 import { useLang } from '@/lib/i18n'
+
+const MotionLink = motion.create(Link)
 
 export function FloatingCta() {
   const { tr } = useLang()
@@ -22,7 +25,7 @@ export function FloatingCta() {
   return (
     <AnimatePresence>
       {visible && (
-        <motion.a
+        <MotionLink
           href="#contact"
           initial={{ opacity: 0, y: 16, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -31,7 +34,7 @@ export function FloatingCta() {
           className="fixed bottom-6 right-6 z-50 rounded-full bg-primary px-6 py-3 font-heading text-sm font-bold text-primary-foreground shadow-lg hover:opacity-90 transition-opacity"
         >
           {tr('navBook')} ☕
-        </motion.a>
+        </MotionLink>
       )}
     </AnimatePresence>
   )

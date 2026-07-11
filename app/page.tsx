@@ -6,12 +6,11 @@ import { Menu } from '@/components/menu'
 import { Shop } from '@/components/shop'
 import { Gallery } from '@/components/gallery'
 import { Visit } from '@/components/visit'
-import { Contact } from '@/components/contact'
 import { Footer } from '@/components/footer'
-import { FloatingCta } from '@/components/floating-cta'
 import { PawTrail } from '@/components/paw-trail'
 import { BgBlobs } from '@/components/bg-blobs'
 
+// Rezervările sunt ascunse temporar — Contact și FloatingCta se readaugă când e gata fluxul
 export default function Page() {
   return (
     <LanguageProvider>
@@ -25,10 +24,8 @@ export default function Page() {
         <About />
         <Gallery />
         <Visit />
-        <Contact />
       </main>
       <Footer />
-      <FloatingCta />
     </LanguageProvider>
   )
 }

@@ -96,11 +96,11 @@ export function Visit() {
                 </li>
                 <li className="flex justify-between">
                   <span>Sâmbătă</span>
-                  <span className="font-medium text-foreground">09:00 – 22:00</span>
+                  <span className="font-medium text-foreground">10:00 – 22:00</span>
                 </li>
                 <li className="flex justify-between">
                   <span>Duminică</span>
-                  <span className="font-medium text-foreground">09:00 – 22:00</span>
+                  <span className="font-medium text-foreground">10:00 – 22:00</span>
                 </li>
               </ul>
             </div>

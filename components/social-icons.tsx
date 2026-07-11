@@ -1,6 +1,7 @@
 export const socials = [
-  { name: 'TikTok', href: 'https://tiktok.com', Icon: TikTokIcon },
-  { name: 'Instagram', href: 'https://instagram.com', Icon: InstagramIcon },
+  // TikTok ascuns temporar — nu există încă un cont, se readaugă când e gata
+  // { name: 'TikTok', href: 'https://tiktok.com', Icon: TikTokIcon },
+  { name: 'Instagram', href: 'https://www.instagram.com/teckelcoffeeandcocktails/', Icon: InstagramIcon },
   { name: 'Facebook', href: 'https://facebook.com', Icon: FacebookIcon },
 ]
 

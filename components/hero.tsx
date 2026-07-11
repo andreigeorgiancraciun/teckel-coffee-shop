@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { useLang } from '@/lib/i18n'
 
@@ -26,10 +27,10 @@ export function Hero() {
 
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild size="lg" className="rounded-full px-7 text-base">
-              <a href="#menu">{tr('heroCta')}</a>
+              <Link href="#menu">{tr('heroCta')}</Link>
             </Button>
             <Button asChild size="lg" className="rounded-full px-7 text-base">
-              <a href="#contact">{tr('heroCta2')}</a>
+              <Link href="#shop">{tr('heroCta2')}</Link>
             </Button>
           </div>
         </div>

@@ -28,7 +28,7 @@ export const t: Dict = {
     en: 'Carefully prepared, served with love — and officially approved by Zucchini, our head barista.',
   },
   heroCta: { ro: 'Vezi meniul', en: 'See our menu' },
-  heroCta2: { ro: 'Rezervă o masă', en: 'Book a table' },
+  heroCta2: { ro: 'Vezi magazinul', en: 'Shop our coffee' },
 
   aboutKicker: { ro: 'Povestea noastră', en: 'Our story' },
   aboutTitle: { ro: 'Salut, sunt Zucchini.', en: "Hi, I'm Zucchini." },
