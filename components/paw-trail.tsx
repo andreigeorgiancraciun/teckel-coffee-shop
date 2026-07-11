@@ -63,8 +63,24 @@ export function PawTrail() {
     }
 
     update()
-    window.addEventListener('resize', update)
-    return () => window.removeEventListener('resize', update)
+
+    // Mobile browsers fire `resize` when the address bar hides/shows on scroll —
+    // that's a height-only change, not a real layout change, so ignore it and
+    // debounce the rest to avoid recomputing the whole trail mid-scroll/tap.
+    let lastWidth = window.innerWidth
+    let timeout: ReturnType<typeof setTimeout>
+    const onResize = () => {
+      if (window.innerWidth === lastWidth) return
+      lastWidth = window.innerWidth
+      clearTimeout(timeout)
+      timeout = setTimeout(update, 200)
+    }
+
+    window.addEventListener('resize', onResize)
+    return () => {
+      window.removeEventListener('resize', onResize)
+      clearTimeout(timeout)
+    }
   }, [])
 
   return (
