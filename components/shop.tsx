@@ -1,14 +1,20 @@
 'use client'
 
 import { useState } from 'react'
+import dynamic from 'next/dynamic'
 import { motion } from 'motion/react'
 import Image from 'next/image'
 import { useLang } from '@/lib/i18n'
 import { ShoppingBag, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Dialog, DialogPopup, DialogTitle } from '@/components/ui/dialog'
 
-type Bi = { ro: string; en: string }
+// Modalul (și @base-ui/react/dialog) se încarcă doar la click pe lupă,
+// nu blochează JS-ul critic de la încărcarea inițială a paginii.
+const ProductDetailsDialog = dynamic(() => import('@/components/product-details-dialog'), {
+  ssr: false,
+})
+
+export type Bi = { ro: string; en: string }
 
 type ProductDetails = {
   usage: Bi
@@ -20,7 +26,7 @@ type ProductDetails = {
   variety: Bi
 }
 
-type Product = {
+export type Product = {
   nameRo: string
   nameEn: string
   weight: string
@@ -147,15 +153,6 @@ function buildWhatsappLink(product: Product, lang: 'ro' | 'en') {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
 }
 
-function DetailRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex justify-between gap-4 border-b border-border py-2.5 text-sm last:border-0">
-      <span className="font-semibold text-foreground">{label}</span>
-      <span className="text-right text-muted-foreground">{value}</span>
-    </div>
-  )
-}
-
 export function Shop() {
   const { tr, lang } = useLang()
   const [selected, setSelected] = useState<Product | null>(null)
@@ -239,52 +236,15 @@ export function Shop() {
         ))}
       </div>
 
-      <Dialog open={!!selected} onOpenChange={(open) => !open && setSelected(null)}>
-        <DialogPopup>
-          {selected && (
-            <>
-              <DialogTitle>{lang === 'ro' ? selected.nameRo : selected.nameEn}</DialogTitle>
-
-              <div className="relative mx-auto mt-4 aspect-square w-full max-w-56">
-                <Image
-                  src={selected.image}
-                  alt={lang === 'ro' ? selected.nameRo : selected.nameEn}
-                  fill
-                  sizes="224px"
-                  className="object-contain"
-                />
-              </div>
-
-              <div className="mt-5">
-                <DetailRow label={tr('shopUsage')} value={selected.details.usage[lang]} />
-                <DetailRow label={tr('shopOrigin')} value={selected.details.origin[lang]} />
-                <DetailRow label={tr('shopProcess')} value={selected.details.process[lang]} />
-                <DetailRow label={tr('shopTaste')} value={selected.details.taste[lang]} />
-                <DetailRow label={tr('shopRegion')} value={selected.details.region[lang]} />
-                <DetailRow label={tr('shopFarmer')} value={selected.details.farmer[lang]} />
-                <DetailRow label={tr('shopVariety')} value={selected.details.variety[lang]} />
-              </div>
-
-              <div className="mt-6 flex items-center justify-between rounded-2xl bg-secondary/50 px-5 py-4">
-                <div>
-                  <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                    {tr('shopPackaging')}
-                  </p>
-                  <p className="font-heading text-xl font-black text-foreground">
-                    {selected.weight} · {selected.price}
-                  </p>
-                </div>
-                <Button className="rounded-full gap-1.5" asChild>
-                  <a href={buildWhatsappLink(selected, lang)} target="_blank" rel="noopener noreferrer">
-                    <ShoppingBag className="h-3.5 w-3.5" />
-                    {tr('shopOrder')}
-                  </a>
-                </Button>
-              </div>
-            </>
-          )}
-        </DialogPopup>
-      </Dialog>
+      {selected && (
+        <ProductDetailsDialog
+          product={selected}
+          onClose={() => setSelected(null)}
+          lang={lang}
+          tr={tr}
+          whatsappLink={buildWhatsappLink(selected, lang)}
+        />
+      )}
     </section>
   )
 }
