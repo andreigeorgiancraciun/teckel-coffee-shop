@@ -23,6 +23,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.teckelcoffeecocktails.ro'),
   title: 'Teckel Coffee & Cocktails — with Zucchini',
   description:
     'A Zucchi-style specialty coffee & cocktails spot run (mostly) by Zucchini, our harlequin dachshund. Espresso, filter, cold brew & good vibes.',
