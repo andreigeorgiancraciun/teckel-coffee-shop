@@ -21,6 +21,7 @@ export const metadata: Metadata = {
 }
 
 // Reservations are hidden for now — Contact and FloatingCta come back once the flow is ready
+// About and Gallery are hidden for now
 export default function EnPage() {
   return (
     <>
@@ -31,8 +32,8 @@ export default function EnPage() {
         <Hero lang="en" />
         <Menu lang="en" />
         <Shop lang="en" />
-        <About lang="en" />
-        <Gallery lang="en" />
+        {/* <About lang="en" /> */}
+        {/* <Gallery lang="en" /> */}
         <Visit lang="en" />
       </main>
       <Footer lang="en" />

@@ -10,9 +10,9 @@ export function Navbar({ lang }: { lang: Lang }) {
   const links = [
     { href: '#menu', label: tr(lang, 'navMenu') },
     { href: '#shop', label: tr(lang, 'navShop') },
-    { href: '#gallery', label: tr(lang, 'navGallery') },
+    // { href: '#gallery', label: tr(lang, 'navGallery') },
     { href: '#visit', label: tr(lang, 'navVisit') },
-    { href: '#about', label: tr(lang, 'navAbout') },
+    // { href: '#about', label: tr(lang, 'navAbout') },
   ]
 
   return (

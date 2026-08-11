@@ -21,6 +21,7 @@ export const metadata: Metadata = {
 }
 
 // Rezervările sunt ascunse temporar — Contact și FloatingCta se readaugă când e gata fluxul
+// About și Gallery sunt ascunse temporar
 export default function Page() {
   return (
     <>
@@ -31,8 +32,8 @@ export default function Page() {
         <Hero lang="ro" />
         <Menu lang="ro" />
         <Shop lang="ro" />
-        <About lang="ro" />
-        <Gallery lang="ro" />
+        {/* <About lang="ro" /> */}
+        {/* <Gallery lang="ro" /> */}
         <Visit lang="ro" />
       </main>
       <Footer lang="ro" />
